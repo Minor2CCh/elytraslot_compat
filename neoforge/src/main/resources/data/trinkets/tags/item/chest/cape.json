@@ -1,0 +1,28 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:and",
+      "values": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "trinkets"
+        },
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "accessories_compat_layer"
+        },
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "accessories"
+        }
+      ]
+    }
+  ],
+  "replace": false,
+  "values": [
+    {
+      "id": "#elytraslot:elytra",
+      "required": false
+    }
+  ]
+}

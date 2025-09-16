@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "elytraslot_compat",
+  "version": "${version}",
+  "name": "Elytra Slot Compat",
+  "description": "A mod that adds compatibility with ElytraSlot via configuration.",
+  "authors": [
+    "Minor2CCh"
+  ],
+  "contact": {
+    "homepage": ""
+  },
+  "license": "LGPL-3.0-only",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.Minor2CCh.elytraslot_compat.fabric.ElytraslotCompatFabric"
+    ],
+    "client": [
+      "com.Minor2CCh.elytraslot_compat.fabric.client.ElytraslotCompatFabricClient"
+    ]
+  },
+  "mixins": [
+    "elytraslot_compat-common.mixins.json",
+    "elytraslot_compat-fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.17.2",
+    "minecraft": "<=1.21.1 >=1.21",
+    "java": ">=21",
+    "fabric-api": "*",
+    "elytraslot": "*",
+    "trinkets": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

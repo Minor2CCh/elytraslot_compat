@@ -1,0 +1,48 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+#issueTrackerURL = ""
+license = "LGPL-3.0-only"
+
+[[mods]]
+modId = "elytraslot_compat"
+version = "${version}"
+displayName = "Elytra Slot Compat"
+authors = "Minor2CCh"
+description = '''
+A mod that adds compatibility with ElytraSlot via configuration.
+'''
+logoFile = "icon.png"
+
+[[dependencies.elytraslot_compat]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.elytraslot_compat]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21,1.21.2)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.elytraslot_compat]]
+modId = "elytraslot"
+type = "required"
+versionRange = "*"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.elytraslot_compat]]
+modId = "curios"
+type = "required"
+versionRange = "*"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config = "elytraslot_compat-common.mixins.json"
+
+[[mixins]]
+config = "elytraslot_compat-neoforge.mixins.json"
