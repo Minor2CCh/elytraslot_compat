@@ -21,4 +21,5 @@ Only in NeoForge can you simultaneously install [Accessories](https://modrinth.c
 ## Custom Elytra Function<br>
 Even if the elytra has custom functionality, it will still function as a regular elytra. Therefore, please note that even if the elytra has custom features, you will not be able to benefit from them.<br>
 ## Elytra Armor Values<br>
-Elytra with armor values may not display their equipped texture, regardless of whether a texture is specified.
+Elytra with armor values may not display their equipped texture, regardless of whether a texture is specified.<br>
+Starting with version 1.1.0, setting “enableArmorValue” to true (Default: true) now applies the durability of elytra equipped in the Cape or Back slots.<br>
