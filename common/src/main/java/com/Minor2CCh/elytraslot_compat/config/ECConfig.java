@@ -4,9 +4,13 @@ import java.util.HashMap;
 
 public class ECConfig {
     public HashMap<String, String> compatList = defaultCompatList();
+    public Boolean enableArmorValue = true;
     public void fillDefaults() {
         if(compatList == null){
             compatList = defaultCompatList();
+        }
+        if(enableArmorValue == null){
+            enableArmorValue = true;
         }
     }
     private HashMap<String, String> defaultCompatList(){

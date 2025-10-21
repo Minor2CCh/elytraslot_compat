@@ -16,9 +16,14 @@ public final class ElytraslotCompat {
         ECConfigLoader.getConfig().compatList.forEach((item, texture) -> {
 
             ELYTRA_TEXTURE_MAP.put(item, ResourceLocation.parse(texture));
+            /*
             System.out.println(item);
             System.out.println(texture);
             System.out.println(ElytraslotCompat.ELYTRA_TEXTURE_MAP.get(item));
+            */
         });
+    }
+    public static ResourceLocation of(String id){
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, id);
     }
 }
