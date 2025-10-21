@@ -8,7 +8,8 @@ When you launch the game with this MOD installed, a file named “elytraslot_com
   "compatList": {
     "netherite_ext:netherite_elytra": "netherite_ext:textures/entity/netherite_elytra.png",
     "reimaginingpotatoes:poisonous_polytra": "reimaginingpotatoes:textures/entity/poisonous_polytra.png"
-  }
+  },
+  "enableArmorValue": true
 }
 ```
 By entering the Elytra item ID you wish to map on the left side and the target Elytra's texture ID on the right side (leave blank if no texture exists), you can map the target Elytra to the Elytra Slot.<br>
@@ -16,8 +17,10 @@ By entering the Elytra item ID you wish to map on the left side and the target E
 By default, it supports the Netherite Elytra from the [Netherite Extension](https://modrinth.com/mod/netheriteextension) and the Poisonous Polytra from the [Poisonous Potato Update](https://modrinth.com/mod/reimagining-potatoes).
 
 # Other<br>
+## Back Slot<br>
+Only in Fabric will allow you to equip elytra in the back slot. (After 1.1.0) <br>
 ## Cape Slot<br>
-Only in NeoForge can you simultaneously install [Accessories](https://modrinth.com/mod/accessories), [Trinkets](https://modrinth.com/mod/trinkets), and the [Accessories Compatibility Layer](https://modrinth.com/mod/accessories-compat-layer) to equip Elytra compatible with the Elytra Slot in the Trinkets' Cape slot. (Requires [Sinytra Connector](https://modrinth.com/mod/connector), [Forgified Fabric API](https://modrinth.com/mod/forgified-fabric-api), and [Connector Extras](https://modrinth.com/mod/connector-extras))<br>
+Only in NeoForge can you simultaneously install [Accessories](https://modrinth.com/mod/accessories),  and the [Accessories Compatibility Layer](https://modrinth.com/mod/accessories-compat-layer) to equip Elytra compatible with the Elytra Slot in the Accessories's Cape slot. <br>
 ## Custom Elytra Function<br>
 Even if the elytra has custom functionality, it will still function as a regular elytra. Therefore, please note that even if the elytra has custom features, you will not be able to benefit from them.<br>
 ## Elytra Armor Values<br>
