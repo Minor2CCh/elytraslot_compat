@@ -7,9 +7,12 @@ When you launch the game with this MOD installed, a file named “elytraslot_com
 {
   "compatList": {
     "netherite_ext:netherite_elytra": "netherite_ext:textures/entity/netherite_elytra.png",
+    "netherite_plated_elytra:netherite_elytra": "netherite_plated_elytra:textures/item/netherite_elytra_model.png",
     "reimaginingpotatoes:poisonous_polytra": "reimaginingpotatoes:textures/entity/poisonous_polytra.png"
   },
-  "enableArmorValue": true
+  "enableArmorValue": true,
+  "enableAnotherSlot": true
+  }
 }
 ```
 By entering the Elytra item ID you wish to map on the left side and the target Elytra's texture ID on the right side (leave blank if no texture exists), you can map the target Elytra to the Elytra Slot.<br>
@@ -19,8 +22,10 @@ By default, it supports the Netherite Elytra from the [Netherite Extension](http
 # Other<br>
 ## Back Slot<br>
 Only in Fabric will allow you to equip elytra in the back slot. (After 1.1.0) <br>
+If enableAnotherSlot is false, you cannot use one of the slots. (After 1.2.0) <br>
 ## Cape Slot<br>
 Only in NeoForge can you simultaneously install [Accessories](https://modrinth.com/mod/accessories),  and the [Accessories Compatibility Layer](https://modrinth.com/mod/accessories-compat-layer) to equip Elytra compatible with the Elytra Slot in the Accessories's Cape slot. <br>
+If enableAnotherSlot is false, you cannot use one of the slots. (After 1.2.0) <br>
 ## Custom Elytra Function<br>
 Even if the elytra has custom functionality, it will still function as a regular elytra. Therefore, please note that even if the elytra has custom features, you will not be able to benefit from them.<br>
 ## Elytra Armor Values<br>
