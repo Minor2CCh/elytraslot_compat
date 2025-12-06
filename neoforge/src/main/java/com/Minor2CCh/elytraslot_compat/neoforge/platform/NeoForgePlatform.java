@@ -39,9 +39,6 @@ public class NeoForgePlatform implements Platform {
 
     @Override
     public boolean checkTrueElytra(ItemStack stack) {
-        if(ElytraslotCompat.ELYTRA_TEXTURE_MAP == null){
-            return false;
-        }
         return ElytraslotCompat.ELYTRA_TEXTURE_MAP.containsKey(getId(stack.getItem()).toString());
     }
 }

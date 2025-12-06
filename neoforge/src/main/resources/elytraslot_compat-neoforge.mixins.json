@@ -6,7 +6,6 @@
   "client": [
   ],
   "mixins": [
-    "ElytraSlotProviderAccessorNeoForge"
   ],
   "injectors": {
     "defaultRequire": 1

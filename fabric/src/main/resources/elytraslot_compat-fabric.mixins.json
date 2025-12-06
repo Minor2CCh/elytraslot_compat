@@ -6,7 +6,6 @@
   "client": [
   ],
   "mixins": [
-    "ElytraSlotProviderAccessorFabric"
   ],
   "injectors": {
     "defaultRequire": 1

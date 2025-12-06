@@ -1,15 +1,14 @@
-package com.Minor2CCh.elytraslot_compat.fabric;
+package com.Minor2CCh.elytraslot_compat;
 
-import com.Minor2CCh.elytraslot_compat.ElytraslotCompat;
-import com.Minor2CCh.elytraslot_compat.ExtraCompatibilityProviderBridge;
 import com.illusivesoulworks.elytraslot.client.ElytraRenderResult;
 import com.illusivesoulworks.elytraslot.common.IElytraProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
-public class ExtraCompatibilityProviderFabric implements IElytraProvider {
+public class ExtraCompatibilityProvider implements IElytraProvider {
     @Override
     public boolean matches(ItemStack stack) {
-        return ExtraCompatibilityProviderBridge.matches(stack);
+        return ElytraslotCompat.PLATFORM.checkTrueElytra(stack);
     }
     @Override
     public ElytraRenderResult getRender(ItemStack stack) {
@@ -23,6 +22,6 @@ public class ExtraCompatibilityProviderFabric implements IElytraProvider {
 
     @Override
     public boolean hasCapeTexture(ItemStack stack) {
-        return ExtraCompatibilityProviderBridge.hasCapeTexture(stack);
+        return !ElytraslotCompat.ELYTRA_TEXTURE_MAP.getOrDefault(ElytraslotCompat.PLATFORM.getId(stack.getItem()).toString(), ResourceLocation.parse("")).equals(ResourceLocation.parse(""));
     }
 }
