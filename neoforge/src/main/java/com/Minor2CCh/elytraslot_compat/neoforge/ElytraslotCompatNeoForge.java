@@ -2,7 +2,6 @@ package com.Minor2CCh.elytraslot_compat.neoforge;
 
 import com.Minor2CCh.elytraslot_compat.ElytraslotCompat;
 import com.Minor2CCh.elytraslot_compat.config.ECConfigLoader;
-import com.Minor2CCh.elytraslot_compat.neoforge.mixin.ElytraSlotProviderAccessorNeoForge;
 import com.Minor2CCh.elytraslot_compat.neoforge.platform.NeoForgePlatform;
 import com.Minor2CCh.elytraslot_compat.registry.ECItemTags;
 import net.minecraft.core.Holder;
@@ -29,7 +28,6 @@ public final class ElytraslotCompatNeoForge {
         // Run our common setup.
         ElytraslotCompat.PLATFORM = new NeoForgePlatform();
         ElytraslotCompat.init();
-        ElytraSlotProviderAccessorNeoForge.getProvider().add(new ExtraCompatibilityProviderNeoForge());
     }
     @SubscribeEvent
     public static void onCurioAttributeModifiers(CurioAttributeModifierEvent event) {

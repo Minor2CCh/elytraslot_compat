@@ -2,7 +2,6 @@ package com.Minor2CCh.elytraslot_compat.fabric;
 
 import com.Minor2CCh.elytraslot_compat.ElytraslotCompat;
 import com.Minor2CCh.elytraslot_compat.config.ECConfigLoader;
-import com.Minor2CCh.elytraslot_compat.fabric.mixin.ElytraSlotProviderAccessorFabric;
 import com.Minor2CCh.elytraslot_compat.fabric.platform.FabricPlatform;
 import com.Minor2CCh.elytraslot_compat.registry.ECItemTags;
 import dev.emi.trinkets.api.SlotReference;
@@ -30,7 +29,6 @@ public final class ElytraslotCompatFabric implements ModInitializer {
         // Run our common setup.
         ElytraslotCompat.PLATFORM = new FabricPlatform();
         ElytraslotCompat.init();
-        ElytraSlotProviderAccessorFabric.getProvider().add(new ExtraCompatibilityProviderFabric());
         if(ECConfigLoader.getConfig().enableArmorValue){
             //Equip,Unequipの2つのイベントで制御せず、必ずEquipのみで判別すること(TrinketsはUnequip→Equipの順だが、Accessories Layer適用中はEquip→Unequipの順で処理する)
             TrinketEquipCallback.EVENT.register((stack, slot, player) -> {
@@ -48,62 +46,57 @@ public final class ElytraslotCompatFabric implements ModInitializer {
                     System.out.println("Equip:"+slot.index());
                 }
                 */
-            /*
-            if (modifiers != null) {
-                 modifiers.modifiers().forEach(System.out::println);
-            }
-            */
                 AttributeInstance instanceArmor = player.getAttribute(Attributes.ARMOR);
                 AttributeInstance instanceToughness = player.getAttribute(Attributes.ARMOR_TOUGHNESS);
                 AttributeInstance instanceKnockbackResistance = player.getAttribute(Attributes.KNOCKBACK_RESISTANCE);
                 // アーマー値を外す
-                if(instanceArmor.hasModifier(getModifierId(Attributes.ARMOR, AttributeModifier.Operation.ADD_VALUE, slot))){
+                if(instanceArmor != null && instanceArmor.hasModifier(getModifierId(Attributes.ARMOR, AttributeModifier.Operation.ADD_VALUE, slot))){
                     instanceArmor.removeModifier(getModifierId(Attributes.ARMOR, AttributeModifier.Operation.ADD_VALUE, slot));
                 }
-                if(instanceToughness.hasModifier(getModifierId(Attributes.ARMOR_TOUGHNESS, AttributeModifier.Operation.ADD_VALUE, slot))){
+                if(instanceToughness != null && instanceToughness.hasModifier(getModifierId(Attributes.ARMOR_TOUGHNESS, AttributeModifier.Operation.ADD_VALUE, slot))){
                     instanceToughness.removeModifier(getModifierId(Attributes.ARMOR_TOUGHNESS, AttributeModifier.Operation.ADD_VALUE, slot));
                 }
-                if(instanceKnockbackResistance.hasModifier(getModifierId(Attributes.KNOCKBACK_RESISTANCE, AttributeModifier.Operation.ADD_VALUE, slot))){
+                if(instanceKnockbackResistance != null && instanceKnockbackResistance.hasModifier(getModifierId(Attributes.KNOCKBACK_RESISTANCE, AttributeModifier.Operation.ADD_VALUE, slot))){
                     instanceKnockbackResistance.removeModifier(getModifierId(Attributes.KNOCKBACK_RESISTANCE, AttributeModifier.Operation.ADD_VALUE, slot));
                 }
 
                 List<AttributeModifier.Operation> operationList = new ArrayList<>(Arrays.asList(AttributeModifier.Operation.ADD_VALUE, AttributeModifier.Operation.ADD_MULTIPLIED_BASE, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
                 operationList.forEach((operation) -> {
-                    if(instanceArmor.hasModifier(getModifierId(Attributes.ARMOR, operation, slot))){
+                    if(instanceArmor != null && instanceArmor.hasModifier(getModifierId(Attributes.ARMOR, operation, slot))){
                         instanceArmor.removeModifier(getModifierId(Attributes.ARMOR, operation, slot));
                     }
                 });
                 operationList.forEach((operation) -> {
-                    if(instanceToughness.hasModifier(getModifierId(Attributes.ARMOR_TOUGHNESS, operation, slot))){
+                    if(instanceToughness != null && instanceToughness.hasModifier(getModifierId(Attributes.ARMOR_TOUGHNESS, operation, slot))){
                         instanceToughness.removeModifier(getModifierId(Attributes.ARMOR_TOUGHNESS, operation, slot));
                     }
                 });
                 operationList.forEach((operation) -> {
-                    if(instanceKnockbackResistance.hasModifier(getModifierId(Attributes.KNOCKBACK_RESISTANCE, operation, slot))){
+                    if(instanceKnockbackResistance != null && instanceKnockbackResistance.hasModifier(getModifierId(Attributes.KNOCKBACK_RESISTANCE, operation, slot))){
                         instanceKnockbackResistance.removeModifier(getModifierId(Attributes.KNOCKBACK_RESISTANCE, operation, slot));
                     }
                 });
 
                 // アーマー値を付与する
                 if(stack.is(ECItemTags.ELYTRA_SLOT_ALLOW) && stack.getItem() instanceof ArmorItem armorItem){
-                    if(!instanceArmor.hasModifier(getModifierId(Attributes.ARMOR, AttributeModifier.Operation.ADD_VALUE, slot))){
-                        player.getAttribute(Attributes.ARMOR)
+                    if(instanceArmor != null && !instanceArmor.hasModifier(getModifierId(Attributes.ARMOR, AttributeModifier.Operation.ADD_VALUE, slot))){
+                        instanceArmor
                                 .addTransientModifier(new AttributeModifier(
                                         getModifierId(Attributes.ARMOR, AttributeModifier.Operation.ADD_VALUE, slot),
                                         armorItem.getDefense(),
                                         AttributeModifier.Operation.ADD_VALUE
                                 ));
                     }
-                    if(!instanceToughness.hasModifier(getModifierId(Attributes.ARMOR_TOUGHNESS, AttributeModifier.Operation.ADD_VALUE, slot))){
-                        player.getAttribute(Attributes.ARMOR_TOUGHNESS)
+                    if(instanceToughness != null && !instanceToughness.hasModifier(getModifierId(Attributes.ARMOR_TOUGHNESS, AttributeModifier.Operation.ADD_VALUE, slot))){
+                        instanceToughness
                                 .addTransientModifier(new AttributeModifier(
                                         getModifierId(Attributes.ARMOR_TOUGHNESS, AttributeModifier.Operation.ADD_VALUE, slot),
                                         armorItem.getToughness(),
                                         AttributeModifier.Operation.ADD_VALUE
                                 ));
                     }
-                    if(!instanceKnockbackResistance.hasModifier(getModifierId(Attributes.KNOCKBACK_RESISTANCE, AttributeModifier.Operation.ADD_VALUE, slot))){
-                        player.getAttribute(Attributes.KNOCKBACK_RESISTANCE)
+                    if(instanceKnockbackResistance != null && !instanceKnockbackResistance.hasModifier(getModifierId(Attributes.KNOCKBACK_RESISTANCE, AttributeModifier.Operation.ADD_VALUE, slot))){
+                        instanceKnockbackResistance
                                 .addTransientModifier(new AttributeModifier(
                                         getModifierId(Attributes.KNOCKBACK_RESISTANCE, AttributeModifier.Operation.ADD_VALUE, slot),
                                         armorItem.getMaterial().value().knockbackResistance(),
@@ -128,8 +121,8 @@ public final class ElytraslotCompatFabric implements ModInitializer {
                         }
                     }
                     armor.forEach((operation, value) -> {
-                        if(!instanceArmor.hasModifier(getModifierId(Attributes.ARMOR, operation, slot))){
-                            player.getAttribute(Attributes.ARMOR)
+                        if(instanceArmor != null && !instanceArmor.hasModifier(getModifierId(Attributes.ARMOR, operation, slot))){
+                            instanceArmor
                                     .addTransientModifier(new AttributeModifier(
                                             getModifierId(Attributes.ARMOR, operation, slot),
                                             value,
@@ -138,8 +131,8 @@ public final class ElytraslotCompatFabric implements ModInitializer {
                         }
                     });
                     toughness.forEach((operation, value) -> {
-                        if(!instanceToughness.hasModifier(getModifierId(Attributes.ARMOR_TOUGHNESS, operation, slot))){
-                            player.getAttribute(Attributes.ARMOR_TOUGHNESS)
+                        if(instanceToughness != null && !instanceToughness.hasModifier(getModifierId(Attributes.ARMOR_TOUGHNESS, operation, slot))){
+                            instanceToughness
                                     .addTransientModifier(new AttributeModifier(
                                             getModifierId(Attributes.ARMOR_TOUGHNESS, operation, slot),
                                             value,
@@ -148,8 +141,8 @@ public final class ElytraslotCompatFabric implements ModInitializer {
                         }
                     });
                     knockbackResistance.forEach((operation, value) -> {
-                        if(!instanceKnockbackResistance.hasModifier(getModifierId(Attributes.KNOCKBACK_RESISTANCE, operation, slot))){
-                            player.getAttribute(Attributes.KNOCKBACK_RESISTANCE)
+                        if(instanceKnockbackResistance != null && !instanceKnockbackResistance.hasModifier(getModifierId(Attributes.KNOCKBACK_RESISTANCE, operation, slot))){
+                            instanceKnockbackResistance
                                     .addTransientModifier(new AttributeModifier(
                                             getModifierId(Attributes.KNOCKBACK_RESISTANCE, operation, slot),
                                             value,

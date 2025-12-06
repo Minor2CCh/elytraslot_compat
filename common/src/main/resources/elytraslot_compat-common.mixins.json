@@ -6,7 +6,8 @@
   "client": [
   ],
   "mixins": [
-    "TagItemMixin"
+    "ElytraSlotProviderAccessor",
+    "TagLoaderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,9 +1,5 @@
 {
   "replace": false,
   "values": [
-    {
-      "id": "#elytraslot:elytra",
-      "required": false
-    }
   ]
 }
