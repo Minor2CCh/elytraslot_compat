@@ -46,10 +46,10 @@ dependencies {
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive = false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
-    modRuntimeOnly "curse.maven:jei-238222:7229072"
-    modImplementation("curse.maven:elytra-slot-317716:5770052")
+    modRuntimeOnly "curse.maven:jei-238222:7270445"
+    modImplementation("curse.maven:elytra-slot-317716:5778732")
     modImplementation "dev.emi:trinkets:${trinkets_version}"
-    modRuntimeOnly("curse.maven:modmenu-308702:5810603")
+    modRuntimeOnly("curse.maven:modmenu-308702:5162837")
 }
 
 processResources {

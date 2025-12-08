@@ -12,3 +12,6 @@
 /neoforge/build/classes/java/main/
 /neoforge/run/
 /fabric/run/
+/forge/.gradle/
+/forge/build/
+/forge/run/

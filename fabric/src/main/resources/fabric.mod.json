@@ -24,13 +24,12 @@
     ]
   },
   "mixins": [
-    "elytraslot_compat-common.mixins.json",
-    "elytraslot_compat-fabric.mixins.json"
+    "elytraslot_compat-common.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.17.2",
-    "minecraft": "<=1.21.1 >=1.21",
-    "java": ">=21",
+    "minecraft": "1.20.1",
+    "java": ">=17",
     "fabric-api": "*",
     "elytraslot": "*",
     "trinkets": "*"

@@ -1,8 +1,9 @@
 package com.Minor2CCh.elytraslot_compat.config;
 
 import com.Minor2CCh.elytraslot_compat.ElytraslotCompat;
-import org.spongepowered.include.com.google.gson.Gson;
-import org.spongepowered.include.com.google.gson.GsonBuilder;
+import com.Minor2CCh.elytraslot_compat.platform.Platform;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class ECConfigLoader {
-    private static final File DIR = ElytraslotCompat.PLATFORM.getConfigPath().toFile();
+    private static final File DIR = Platform.INSTANCE.getConfigPath().toFile();
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final String FILENAME = ElytraslotCompat.MOD_ID+".json";
     private static final Path CONFIG_PATH = Path.of(new File(DIR,FILENAME).getPath());

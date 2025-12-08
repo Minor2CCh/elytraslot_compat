@@ -9,6 +9,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagEntry;
 import net.minecraft.tags.TagLoader;
+import net.minecraft.tags.TagManager;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Final;
@@ -31,13 +32,13 @@ public class TagLoaderMixin {
     private <T> void beforeBuild(Map<ResourceLocation, List<TagLoader.EntryWithSource>> map,
                                  CallbackInfoReturnable<Map<ResourceLocation, Collection<T>>> cir) {
 
-        if (!Registries.tagsDirPath(Registries.ITEM).equals(directory)) return;
+        if (!TagManager.getTagDir(Registries.ITEM).equals(directory)) return;
 
         ResourceLocation target = ECItemTags.ELYTRA_SLOT_ALLOW.location();
 
         List<TagLoader.EntryWithSource> entries = map.get(target);
         if (entries != null) {
-            for (ResourceLocation itemId : ElytraslotCompat.ELYTRA_TEXTURE_MAP.keySet().stream().map(ResourceLocation::parse).toList()) {
+            for (ResourceLocation itemId : ElytraslotCompat.ELYTRA_TEXTURE_MAP.keySet().stream().map(ResourceLocation::new).toList()) {
 
                 Item item = BuiltInRegistries.ITEM.get(itemId);
                 ElytraslotCompat.LOGGER.info("id:{}", itemId);
@@ -51,7 +52,7 @@ public class TagLoaderMixin {
             }
         }
         if(ECConfigLoader.getConfig().enableAnotherSlot){
-            if(ElytraslotCompat.PLATFORM.getModLoader() == Platform.ModLoader.FABRIC){
+            if(Platform.INSTANCE.getModLoader() == Platform.ModLoader.FABRIC){
                 ResourceLocation targetBack = ECItemTags.TRINKETS_SLOT_BACK_ALLOW.location();
                 List<TagLoader.EntryWithSource> entriesBackSlot = map.get(targetBack);
                 if(entriesBackSlot != null){
@@ -59,15 +60,15 @@ public class TagLoaderMixin {
                     TagLoader.EntryWithSource ews = new TagLoader.EntryWithSource(entry, "elytraslot_compat:inject_backslot");
                     entriesBackSlot.add(ews);
                 }
-            }else if(ElytraslotCompat.PLATFORM.getModLoader() == Platform.ModLoader.NEOFORGE){
-                if(ElytraslotCompat.PLATFORM.isModLoaded("accessories") && ElytraslotCompat.PLATFORM.isModLoaded("accessories_compat_layer")){
-                    ResourceLocation targetCape = ECItemTags.ACCESSORIES_ALLOW_CAPE.location();
-                    List<TagLoader.EntryWithSource> entriesBackSlot = map.get(targetCape);
-                    if(entriesBackSlot != null){
-                        TagEntry entry = TagEntry.tag(target);
-                        TagLoader.EntryWithSource ews = new TagLoader.EntryWithSource(entry, "elytraslot_compat:inject_capeslot");
-                        entriesBackSlot.add(ews);
-                    }
+
+            }
+            else if(Platform.INSTANCE.getModLoader() == Platform.ModLoader.FORGE){
+                ResourceLocation targetCape = ECItemTags.CURIOS_ALLOW_CAPE.location();
+                List<TagLoader.EntryWithSource> entriesBackSlot = map.get(targetCape);
+                if(entriesBackSlot != null){
+                    TagEntry entry = TagEntry.tag(target);
+                    TagLoader.EntryWithSource ews = new TagLoader.EntryWithSource(entry, "elytraslot_compat:inject_capeslot");
+                    entriesBackSlot.add(ews);
                 }
             }
         }

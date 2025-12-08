@@ -1,22 +1,24 @@
-package com.Minor2CCh.elytraslot_compat.neoforge.platform;
+package com.Minor2CCh.elytraslot_compat.forge.platform;
 
 import com.Minor2CCh.elytraslot_compat.ElytraslotCompat;
 import com.Minor2CCh.elytraslot_compat.platform.Platform;
+import com.google.auto.service.AutoService;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.FMLPaths;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.nio.file.Path;
 
-public class NeoForgePlatform implements Platform {
+@AutoService(Platform.class)
+public class ForgePlatform implements Platform {
     @Override
     public ModLoader getModLoader() {
-        return ModLoader.NEOFORGE;
+        return ModLoader.FORGE;
     }
 
     @Override
@@ -30,9 +32,10 @@ public class NeoForgePlatform implements Platform {
     }
     @Override
     public TagKey<Item> registerTagItem(String modId, String id) {
-        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(modId, id));
+        return TagKey.create(Registries.ITEM, resourceLocation(modId, id));
     }
     @Override
+    @SuppressWarnings("deprecation")
     public ResourceLocation getId(Item item) {
         return BuiltInRegistries.ITEM.getKey(item);
     }

@@ -1,23 +1,7 @@
 package com.Minor2CCh.elytraslot_compat.fabric;
 
 import com.Minor2CCh.elytraslot_compat.ElytraslotCompat;
-import com.Minor2CCh.elytraslot_compat.config.ECConfigLoader;
-import com.Minor2CCh.elytraslot_compat.fabric.platform.FabricPlatform;
-import com.Minor2CCh.elytraslot_compat.registry.ECItemTags;
-import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.event.TrinketEquipCallback;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.core.Holder;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.component.ItemAttributeModifiers;
-
-import java.util.*;
 
 public final class ElytraslotCompatFabric implements ModInitializer {
     @Override
@@ -27,8 +11,10 @@ public final class ElytraslotCompatFabric implements ModInitializer {
         // Proceed with mild caution.
 
         // Run our common setup.
-        ElytraslotCompat.PLATFORM = new FabricPlatform();
         ElytraslotCompat.init();
+
+
+        /*
         if(ECConfigLoader.getConfig().enableArmorValue){
             //Equip,Unequipの2つのイベントで制御せず、必ずEquipのみで判別すること(TrinketsはUnequip→Equipの順だが、Accessories Layer適用中はEquip→Unequipの順で処理する)
             TrinketEquipCallback.EVENT.register((stack, slot, player) -> {
@@ -45,7 +31,7 @@ public final class ElytraslotCompatFabric implements ModInitializer {
                     System.out.println("Equip:"+slot.inventory().getSlotType().getGroup());
                     System.out.println("Equip:"+slot.index());
                 }
-                */
+                *//*
                 AttributeInstance instanceArmor = player.getAttribute(Attributes.ARMOR);
                 AttributeInstance instanceToughness = player.getAttribute(Attributes.ARMOR_TOUGHNESS);
                 AttributeInstance instanceKnockbackResistance = player.getAttribute(Attributes.KNOCKBACK_RESISTANCE);
@@ -152,8 +138,8 @@ public final class ElytraslotCompatFabric implements ModInitializer {
                     });
                 }
             });
-        }
-    }
+        }*/
+    }/*
     private static Map<AttributeModifier.Operation, Double> createHashMap() {
         Map<AttributeModifier.Operation, Double> map = new HashMap<>();
         map.put(AttributeModifier.Operation.ADD_VALUE, 0.0);
@@ -180,5 +166,5 @@ public final class ElytraslotCompatFabric implements ModInitializer {
     }
     private static void calcModifier(Map<AttributeModifier.Operation, Double> map, AttributeModifier modifier) {
         map.replace(modifier.operation(), map.getOrDefault(modifier.operation(), 0.0)+modifier.amount());
-    }
+    }*/
 }
