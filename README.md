@@ -26,8 +26,10 @@ If enableAnotherSlot is false, you cannot use one of the slots. (After 1.2.0) <b
 ## Cape Slot<br>
 Only in NeoForge can you simultaneously install [Accessories](https://modrinth.com/mod/accessories),  and the [Accessories Compatibility Layer](https://modrinth.com/mod/accessories-compat-layer) to equip Elytra compatible with the Elytra Slot in the Accessories's Cape slot. <br>
 If enableAnotherSlot is false, you cannot use one of the slots. (After 1.2.0) <br>
+In Minecraft version 1.20.1, it can be added as-is.<br>
 ## Custom Elytra Function<br>
 Even if the elytra has custom functionality, it will still function as a regular elytra. Therefore, please note that even if the elytra has custom features, you will not be able to benefit from them.<br>
 ## Elytra Armor Values<br>
 Elytra with armor values may not display their equipped texture, regardless of whether a texture is specified.<br>
 Starting with version 1.1.0, setting “enableArmorValue” to true (Default: true) now applies the durability of elytra equipped in the Cape or Back slots.<br>
+In Minecraft version 1.20.1, armor values are not applied regardless of settings.
